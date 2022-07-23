@@ -7,8 +7,12 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+import Auth from './utils/auth';
+
 import Home from './pages/Home';
 import NoMatch from './pages/NoMatch';
+import Login from './pages/Login';
+import Signup from './pages/Signup'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -30,16 +34,24 @@ const client = new ApolloClient({
 });
 
 function App() {
+  if (!Auth.loggedIn) {
+    window.location.assign('login')
+  }
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="App">
-          Hello World
-        </div>
         <Routes>
           <Route
             path="/"
             element={<Home />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+            path="/signup"
+            element={<Signup />}
           />
           <Route
             path="*"
