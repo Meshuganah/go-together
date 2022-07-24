@@ -1,5 +1,7 @@
 import Auth from '../utils/auth';
 
+import { Link } from 'react-router-dom';
+
 const Header = () => {
 
     return (
@@ -10,9 +12,9 @@ const Header = () => {
             <header>
                 <nav>
                     <ul>
-                        <li>Go</li>
-                        <li>Find</li>
-                        <li>Together</li>
+                        <li><Link to='/'>Go</Link></li>
+                        <li><Link to='/login'>Find</Link></li>
+                        <li><Link to='/signup'>Together</Link></li>
                         <li><button onClick={() => Auth.logout()}>Logoff</button></li>
                     </ul>
                 </nav>
