@@ -13,7 +13,7 @@ const Header = () => {
                         <li>Go</li>
                         <li>Find</li>
                         <li>Together</li>
-                        <li><button onClick={Auth.logout()}>Logoff</button></li>
+                        <li><button onClick={() => Auth.logout()}>Logoff</button></li>
                     </ul>
                 </nav>
             </header>
