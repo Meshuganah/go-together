@@ -12,7 +12,9 @@ import Auth from './utils/auth';
 import Home from './pages/Home';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
-import Signup from './pages/Signup'
+import Signup from './pages/Signup';
+import Find from './pages/Find';
+import Together from './pages/Together';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -35,7 +37,7 @@ const client = new ApolloClient({
 
 function App() {
   if (!Auth.loggedIn) {
-    window.location.assign('login')
+    window.location.assign('/login')
   }
   return (
     <ApolloProvider client={client}>
@@ -44,6 +46,14 @@ function App() {
           <Route
             path="/"
             element={<Home />}
+          />
+          <Route
+            path="/find"
+            element={<Find />}
+          />
+          <Route
+            path="/together"
+            element={<Together />}
           />
           <Route
             path="/login"

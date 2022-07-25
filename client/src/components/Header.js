@@ -13,8 +13,8 @@ const Header = () => {
                 <nav>
                     <ul>
                         <li><Link to='/'>Go</Link></li>
-                        <li><Link to='/login'>Find</Link></li>
-                        <li><Link to='/signup'>Together</Link></li>
+                        <li><Link to='/find'>Find</Link></li>
+                        <li><Link to='/together'>Together</Link></li>
                         <li><button onClick={() => Auth.logout()}>Logoff</button></li>
                     </ul>
                 </nav>
