@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import { Link } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
@@ -70,6 +71,8 @@ const Login = (props) => {
                         </form>
 
                         {error && <div>Login failed</div>}
+
+                        <Link to='/signup'>Signup</Link>
                     </div>
                 </div>
             </div>

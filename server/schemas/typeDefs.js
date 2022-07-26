@@ -28,6 +28,8 @@ const typeDefs = gql`
         user(username: String!): User
         event(_id: ID): Event
         events: [Event]
+        seatGeekEvent(id: String): Event
+        seatGeekQuery(query: String): [Event]
     }
 
     type Mutation {
