@@ -38,6 +38,14 @@ const resolvers = {
         events: async () => {
             return Event.find()
                 .select('-__v')
+        },
+
+        seatGeekEvent: async (_, { id }, { dataSources }) => {
+            return dataSources.seatGeekAPI.getEvent(id);
+        },
+
+        seatGeekQuery: async (_, { query }, { dataSources }) => {
+            return dataSources.seatGeekAPI.searchEvent(query);
         }
     },
 

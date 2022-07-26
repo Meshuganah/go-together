@@ -4,13 +4,19 @@ const { authMiddleware } = require('./utils/auth');
 const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers} = require('./schemas');
 const path = require('path');
+const SeatGeekAPI = require('./utils/seat-geek-api');
 
 const PORT = process.env.PORT || 3001;
 
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: authMiddleware
+    context: authMiddleware,
+    dataSources: () => {
+        return {
+            seatGeekAPI: new SeatGeekAPI()
+        }
+    }
 });
 
 const app = express();
