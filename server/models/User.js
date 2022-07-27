@@ -28,7 +28,7 @@ const userSchema = new Schema(
         ],
         events: [
             {
-                type: Integer
+                type: String
             }
         ]
     },

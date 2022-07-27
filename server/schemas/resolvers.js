@@ -1,4 +1,4 @@
-const { User, Event } = require('../models');
+const { User } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -31,17 +31,12 @@ const resolvers = {
                 .populate('thoughts');
         },
 
-        event: async (_, { _id }) => {
-            return Event.findOne({ _id });
-        },
-
-        events: async () => {
-            return Event.find()
-                .select('-__v')
-        },
-
         seatGeekEvent: async (_, { id }, { dataSources }) => {
             return dataSources.seatGeekAPI.getEvent(id);
+        },
+
+        seatGeekEvents: async (_, { ids }, { dataSources }) => {
+            return dataSources.seatGeekAPI.getEvents(ids);
         },
 
         seatGeekQuery: async (_, { query }, { dataSources }) => {

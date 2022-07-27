@@ -44,6 +44,7 @@ const typeDefs = gql`
         event(_id: ID): Event
         events: [Event]
         seatGeekEvent(id: String): Event
+        seatGeekEvents(ids: [String]):  Events
         seatGeekQuery(query: String): Events
     }
 
