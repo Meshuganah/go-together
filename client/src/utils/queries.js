@@ -18,27 +18,49 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_EVENTS = gql`
-    query events($user: String) {
-        events(user: $user) {
-            _id
-            eventTitle
-            venue
-            date
-            artist
-            user
+query Query($query: String) {
+    seatGeekQuery(query: $query) {
+      events {
+        id
+        title
+        venue {
+          name
+          state
+          city
+          address
+          postal_code
         }
+        datetime_local
+        url
+        description
+        performers {
+          name
+          image
+        }
+      }
     }
+  }
 `;
 
 export const QUERY_EVENT = gql`
-    query event($id: ID!) {
-        event(_id: $id) {
-            _id
-            eventTitle
-            venue
-            date
-            artist
-            user
-        }
+query Query($seatGeekEventId: String) {
+    seatGeekEvent(id: $seatGeekEventId) {
+      id
+      title
+      datetime_local
+      url
+      description
+      performers {
+        name
+        image
+      }
+      venue {
+        name
+        state
+        city
+        address
+        postal_code
+      }
     }
+  }
 `;
