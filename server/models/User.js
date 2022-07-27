@@ -28,8 +28,7 @@ const userSchema = new Schema(
         ],
         events: [
             {
-                type: Schema.Types.ObjectId,
-                ref: 'Event'
+                type: Integer
             }
         ]
     },

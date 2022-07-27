@@ -6,7 +6,7 @@ const typeDefs = gql`
         username: String
         email: String
         friends: [User]
-        events: [Event]
+        events: [String]
     }
 
     type Auth {
@@ -15,11 +15,26 @@ const typeDefs = gql`
     }
 
     type Event {
-        eventTitle: String
-        venue: String
-        date: String
-        artist: String
-        user: String
+        id: Int
+        title: String
+        venue: Venue
+        datetime_local: String
+        url: String
+        description: String
+        performers: [Performers]
+    }
+
+    type Venue {
+        name: String
+        state: String
+        city: String
+        address: String
+        postal_code: String
+    }
+
+    type Performers {
+        name: String
+        image: String
     }
 
     type Query {
@@ -29,7 +44,11 @@ const typeDefs = gql`
         event(_id: ID): Event
         events: [Event]
         seatGeekEvent(id: String): Event
-        seatGeekQuery(query: String): [Event]
+        seatGeekQuery(query: String): Events
+    }
+
+    type Events {
+        events: [Event]
     }
 
     type Mutation {
@@ -41,3 +60,11 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+//type Event {
+    //     eventTitle: String
+    //     venue: String
+    //     date: String
+    //     artist: String
+    //     user: String
+   // }
