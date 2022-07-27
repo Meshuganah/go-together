@@ -18,28 +18,28 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_EVENTS = gql`
-query Query($query: String) {
-    seatGeekQuery(query: $query) {
-      events {
-        id
-        title
-        venue {
-          name
-          state
-          city
-          address
-          postal_code
-        }
-        datetime_local
-        url
-        description
-        performers {
-          name
-          image
-        }
+query SeatGeekEvents($ids: [String]) {
+  seatGeekEvents(ids: $ids) {
+    events {
+      id
+      title
+      venue {
+        name
+        state
+        city
+        address
+        postal_code
+      }
+      datetime_local
+      url
+      description
+      performers {
+        name
+        image
       }
     }
   }
+}
 `;
 
 export const QUERY_EVENT = gql`
@@ -64,3 +64,28 @@ query Query($seatGeekEventId: String) {
     }
   }
 `;
+
+export const QUERY_EVENT_SEARCH = gql`
+query Query($query: String) {
+  seatGeekQuery(query: $query) {
+    events {
+      id
+      title
+      venue {
+        name
+        state
+        city
+        address
+        postal_code
+      }
+      datetime_local
+      url
+      description
+      performers {
+        name
+        image
+      }
+    }
+  }
+}
+`
