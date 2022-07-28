@@ -17,10 +17,10 @@ const Find = () => {
     return (
         <div>
             <Header />
-            <form>
-                <label htmlFor="search">Search:</label>
+            <form className='text-center'>
+                <label htmlFor="search" className='mx-2'>Search: </label>
                 <input name="search" id="search" onChange={(event) => setSearch(event.target.value)} />
-                <button onClick={handleFormSubmit}>Search</button>
+                <button onClick={handleFormSubmit} className='mx-2 btn btn-secondary'>Search</button>
             </form>
             <SearchList events={data?.seatGeekQuery.events} />
         </div>
