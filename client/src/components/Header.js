@@ -6,16 +6,24 @@ const Header = () => {
 
     return (
         <div>
-            <div>
-                <h1>Go Together</h1>
+            <div className='header-container'>
+                <img
+                    src={require('../assets/go-together-banner-cropped-small.jpg')}
+                    alt='Concert'
+                    className='header-img'
+                ></img>
+                <h1 className='header-text'>Go Together</h1>
             </div>
             <header>
                 <nav>
                     <ul>
-                        <li><Link to='/'>Go</Link></li>
-                        <li><Link to='/find'>Find</Link></li>
-                        <li><Link to='/together'>Together</Link></li>
-                        <li><button onClick={() => Auth.logout()}>Logoff</button></li>
+                        <li className='nav'><Link to='/'>Go</Link></li>
+                        <li className='nav'><Link to='/find'>Find</Link></li>
+                        <li className='nav'><Link to='/together'>Together</Link></li>
+                        <li><button 
+                        onClick={() => Auth.logout()}
+                        className='btn btn-secondary nav-btn'
+                        >Logoff</button></li>
                     </ul>
                 </nav>
             </header>
