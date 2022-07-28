@@ -16,18 +16,25 @@ const Home = () => {
         variables: { username: userParam }
     })
 
+    console.log({ data });
     if(loading) return "Loading";
 
-    const user = data.me;
-
+    //const user = data.me || [];
+    let user;
+    if (data) {
+        user = data.me;
+    }
+    console.log(user);
     let dates = [];
 
-    user.events.forEach(event => {
-        dates.push(dayjs(event.datetime_local).format('MM-DD-YYYY'))
-    });
+    // if (data) {
+    //     user.events.forEach(event => {
+    //         dates.push(dayjs(event.datetime_local).format('MM-DD-YYYY'))
+    //     });
+    // }
+
 
     const mark = new Set(dates);
-
     return (
         <div>
             <Header />
@@ -50,7 +57,8 @@ const Home = () => {
                     </tr>
                 </tbody>
             </table> */}
-            <EventList events={user.events} username={user.username}></EventList>
+            {user &&
+            <EventList events={user.events} username={user.username}></EventList>}
             <Calendar
                 tileContent={({ date, view }) => {
                     //console.log(dayjs(date).format('MM-DD-YYYY'), mark.has(dayjs(date).format('MM-DD-YYYY')));
