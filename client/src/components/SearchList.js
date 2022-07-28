@@ -13,11 +13,11 @@ const SearchList = ({ events }) => {
         <div>
             {events && events.map(event => {
                 return (
-                    <div key={event.id}>
+                    <div key={event.id} className='border border-secondary border-3 w-50 text-center mx-auto my-3'>
                         <h3>{event.title}</h3>
                         <span>{event.venue.name}</span>
                         <span>{event.date}</span>
-                        <button id={event.id} onClick={handleAddEvent}>I'm Going!</button>
+                        <button id={event.id} onClick={handleAddEvent} className='btn btn-secondary my-2 mx-2'>I'm Going!</button>
                     </div>
                 )
             })}
