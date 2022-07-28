@@ -5,9 +5,7 @@ const SearchList = ({ events }) => {
     const [addEvent, { data, loading, error }] = useMutation(ADD_EVENT);
 
     const handleAddEvent = async (event) => {
-        console.log(event.target.id.toString());
         let id = event.target.id.toString();
-        console.log(id);
         const data = await addEvent({ variables: { id: id }});
     }
 
