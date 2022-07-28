@@ -16,7 +16,7 @@ const Home = () => {
         variables: { username: userParam }
     })
 
-    console.log({ data });
+    console.log({data});
     if(loading) return "Loading";
 
     //const user = data.me || [];
