@@ -15,17 +15,25 @@ const Home = () => {
         variables: { username: userParam }
     })
 
-    if(loading) return "Loading";
+    if (loading) return "Loading";
     console.log(data);
-    const user = data?.me;
 
-    let dates = [];
+    let user;
+    let mark;
 
-    user.events.forEach(event => {
-        dates.push(dayjs(event.datetime_local).format('MM-DD-YYYY'))
-    });
+    try {
+        user = data?.me;
 
-    const mark = new Set(dates);
+        let dates = [];
+
+        user?.events.forEach(event => {
+            dates.push(dayjs(event.datetime_local).format('MM-DD-YYYY'))
+        });
+
+        mark = new Set(dates);
+    } catch(error) {
+        console.log(error);
+    }
 
     return (
         <div>
