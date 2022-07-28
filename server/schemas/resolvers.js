@@ -18,16 +18,20 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
 
-        users: async () => {
+        users: async (_, __, {dataSources} ) => {
             return User.find()
                 .select('-__v -password')
                 .populate('friends');
         },
 
-        user: async (_, { username }) => {
-            return User.findOne({ username })
+        user: async (_, { username }, { dataSources } ) => {
+            const userData = await User.findOne({ username })
                 .select('-__v -password')
                 .populate('friends');
+                console.log(userData);
+                const seatGeekEvents = await dataSources.seatGeekAPI.getEvents(userData.events);
+
+                return Object.assign(userData.toObject(), seatGeekEvents);
         },
 
         seatGeekEvent: async (_, { id }, { dataSources }) => {

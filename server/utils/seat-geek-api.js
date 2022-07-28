@@ -13,7 +13,7 @@ class SeatGeekAPI extends RESTDataSource {
     }
 
     async getEvents(ids) {
-        return this.get(`events/?${ids.map(id => `id=${id}&`).join('')}client_id=${process.env.CLIENT_ID}`);
+        return this.get(`events/?id=${ids.join(',')}&client_id=${process.env.CLIENT_ID}`);
     }
 
     async searchEvent(query) {
