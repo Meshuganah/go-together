@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const Find = () => {
     const [search, setSearch] = useState('');
-    const [render, setRender] = useState(false);
+    const [eventList, setEventList] = useState([]);
     let searchedEvents;
     const handleClick = async (e) => {
         try{
@@ -14,18 +14,20 @@ const Find = () => {
                 if(response.ok) {
                     response.json().then(function(data) {
                         searchedEvents = data;
-                        console.log(searchedEvents);
-                        console.log(searchedEvents.events[0].title)
-                        searchedEvents.events.map(eventList => {
-                            console.log(eventList.title);
-                        });
+                        //console.log(searchedEvents);
+                        //console.log(searchedEvents.events[0].title)
+                        setEventList(searchedEvents);
+                        console.log(eventList);
+                        // searchedEvents.events.map(eventList => {
+                        //     console.log(eventList.title);
+                        // });
+
                     });
                 }
             })
         } catch (e) {
             console.error(e);
         }
-        setRender(!render);
     };   
 
     const handleChange = event => {
