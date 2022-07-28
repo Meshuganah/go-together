@@ -6,12 +6,13 @@ const resolvers = {
     Query: {
         me: async (_, args, context) => {
             if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id})
+                const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
                     .populate('friends')
-                    .populate('events')
 
-                return userData;
+                const seatGeekEvents = await context.dataSources.seatGeekAPI.getEvents(userData.events);
+
+                return Object.assign(userData.toObject(), seatGeekEvents);
             }
 
             throw new AuthenticationError('Not logged in');
@@ -20,15 +21,13 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('friends')
-                .populate('events');
+                .populate('friends');
         },
 
         user: async (_, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
-                .populate('friends')
-                .populate('thoughts');
+                .populate('friends');
         },
 
         seatGeekEvent: async (_, { id }, { dataSources }) => {
@@ -48,13 +47,13 @@ const resolvers = {
         login: async (_, { email, password }) => {
             const user = await User.findOne({ email });
 
-            if(!user) {
+            if (!user) {
                 throw new AuthenticationError('User does not exist');
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
-            if(!correctPw) {
+            if (!correctPw) {
                 throw new AuthenticationError('Incorrect Password');
             }
 
@@ -69,19 +68,31 @@ const resolvers = {
             return { token, user };
         },
 
-        addEvent: async (_, args, context) => {
+        addEvent: async (_, id, context) => {
             if (context.user) {
-                const event = await Event.create({ ...args, user: context.user.username });
-
-                await User.findByIdAndUpdate(
+                const me = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { events: event._id } },
+                    { $push: { events: id.id } },
                     { new: true }
                 );
 
-                return event;
+                return me;
             }
-          
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+
+        removeEvent: async (_, id, context) => {
+            if (context.user) {
+                const me = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { events: id.id } },
+                    { new: true }
+                );
+
+                return me;
+            }
+
             throw new AuthenticationError('You need to be logged in!');
         },
 

@@ -7,20 +7,26 @@ import dayjs from 'dayjs'
 import { Navigate, useParams } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME, QUERY_EVENTS } from '../utils/queries';
 
 const Home = () => {
+    let eventData;
     const { username: userParam } = useParams();
-
     const { loading, data } = useQuery(QUERY_ME, {
         variables: { username: userParam }
-    });
+    })
 
-    console.log(data);
+    if(loading) return "Loading";
 
     const user = data.me;
 
-    const mark = new Set(['07-27-2022', '07-01-2022']);
+    let dates = [];
+
+    user.events.forEach(event => {
+        dates.push(dayjs(event.datetime_local).format('MM-DD-YYYY'))
+    });
+
+    const mark = new Set(dates);
 
     return (
         <div>
