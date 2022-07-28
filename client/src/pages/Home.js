@@ -17,10 +17,17 @@ const Home = () => {
     });
 
     console.log(data);
+    let user;
+    // const user = data.me || [];
+    if (data) {
+        user = data.me;
+    }
 
-    const user = data.me;
-
+    console.log( new Date(1659067200000));
     const mark = new Set(['07-27-2022', '07-01-2022']);
+
+     //if (loading) return 'Loading...';
+    // if (error) console.log(error);
 
     return (
         <div>
@@ -44,7 +51,8 @@ const Home = () => {
                     </tr>
                 </tbody>
             </table> */}
-            <EventList events={user.events} username={user.username}></EventList>
+            {user &&
+            <EventList events={user.events} username={user.username}></EventList>}
             <Calendar
                 tileContent={({ date, view }) => {
                     //console.log(dayjs(date).format('MM-DD-YYYY'), mark.has(dayjs(date).format('MM-DD-YYYY')));
