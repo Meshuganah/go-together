@@ -37,7 +37,7 @@ const client = new ApolloClient({
 
 function App() {
   if (!Auth.loggedIn() && window.location.href.split('/')[window.location.href.split('/').length - 1] !== 'login' && (window.location.href.split('/')[window.location.href.split('/').length - 1] !== 'signup')) {
-    window.location.assign('login');
+    window.location.assign('#/login');
   }
   return (
     <ApolloProvider client={client}>
