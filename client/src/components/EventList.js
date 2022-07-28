@@ -1,7 +1,8 @@
 import { useMutation } from "@apollo/client";
 import { REMOVE_EVENT } from "../utils/mutations";
+import dayjs from "dayjs";
 
-const EventList = ({ events, username }) => {
+const EventList = ({ events, username, selectedDate }) => {
     const [addEvent, { data, loading, error }] = useMutation(REMOVE_EVENT);
 
     const handleRemoveEvent = async (event) => {
@@ -13,6 +14,9 @@ const EventList = ({ events, username }) => {
         <div>
             <h2>{username}</h2>
             {events && events.map(event => {
+                if (selectedDate !== dayjs(event.datetime_local).format("MM-DD-YYYY")) {
+                    return '';
+                }
                 return (
                     <div key={event.id}>
                         <h3>{event.title}</h3>

@@ -4,12 +4,14 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs'
 
+import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 
 const Home = () => {
+    const [selectedDate, setSelectedDate] = useState(dayjs().format('MM-DD-YYYY'));
     const { username: userParam } = useParams();
     const { loading, data } = useQuery(QUERY_ME, {
         variables: { username: userParam }
@@ -38,29 +40,12 @@ const Home = () => {
     return (
         <div>
             <Header />
-            {/* <h2>Your Events</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Dance Off</td>
-                        <td>The Battle of the Bands</td>
-                    </tr>
-                    <tr>
-                        <td>1:00</td>
-                        <td>3:00</td>
-                    </tr>
-                </tbody>
-            </table> */}
-            <EventList events={user.events} username={user.username}></EventList>
+            <EventList events={user.events} username={user.username} selectedDate={selectedDate}></EventList>
             <Calendar
+                onChange={(value, event) => {
+                    setSelectedDate(dayjs(value).format('MM-DD-YYYY'));
+                }}
                 tileContent={({ date, view }) => {
-                    //console.log(dayjs(date).format('MM-DD-YYYY'), mark.has(dayjs(date).format('MM-DD-YYYY')));
                     if (mark.has(dayjs(date).format('MM-DD-YYYY'))) {
                         return (
                             <>
