@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 const EventList = ({ events, username }) => {
     return (
         <div>
@@ -6,7 +8,7 @@ const EventList = ({ events, username }) => {
                 <div>
                     <h3>{event.eventTitle}</h3>
                         <span>{event.venue}</span>
-                        <span>{event.date}</span>
+                        <span>{dayjs(event.date).format('DD/MM/YYYY')}</span>
                 </div>
             ))}
         </div>
