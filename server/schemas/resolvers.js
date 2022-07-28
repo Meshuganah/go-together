@@ -10,28 +10,32 @@ const resolvers = {
                     .select('-__v -password')
                     .populate('friends')
 
-                const seatGeekEvents = await context.dataSources.seatGeekAPI.getEvents(userData.events);
-
-                return Object.assign(userData.toObject(), seatGeekEvents);
+                if (userData.events.length > 0) {
+                    const seatGeekEvents = await context.dataSources.seatGeekAPI.getEvents(userData.events);
+                    return Object.assign(userData.toObject(), seatGeekEvents);
+                } else {
+                    return userData
+                }
+                
             }
 
             throw new AuthenticationError('Not logged in');
         },
 
-        users: async (_, __, {dataSources} ) => {
+        users: async (_, __, { dataSources }) => {
             return User.find()
                 .select('-__v -password')
                 .populate('friends');
         },
 
-        user: async (_, { username }, { dataSources } ) => {
+        user: async (_, { username }, { dataSources }) => {
             const userData = await User.findOne({ username })
                 .select('-__v -password')
                 .populate('friends');
-                console.log(userData);
-                const seatGeekEvents = await dataSources.seatGeekAPI.getEvents(userData.events);
+            console.log(userData);
+            const seatGeekEvents = await dataSources.seatGeekAPI.getEvents(userData.events);
 
-                return Object.assign(userData.toObject(), seatGeekEvents);
+            return Object.assign(userData.toObject(), seatGeekEvents);
         },
 
         seatGeekEvent: async (_, { id }, { dataSources }) => {

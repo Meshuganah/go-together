@@ -7,18 +7,17 @@ import dayjs from 'dayjs'
 import { Navigate, useParams } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME, QUERY_EVENTS } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 
 const Home = () => {
-    let eventData;
     const { username: userParam } = useParams();
     const { loading, data } = useQuery(QUERY_ME, {
         variables: { username: userParam }
     })
 
     if(loading) return "Loading";
-
-    const user = data.me;
+    console.log(data);
+    const user = data?.me;
 
     let dates = [];
 
