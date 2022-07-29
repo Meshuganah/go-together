@@ -21,7 +21,7 @@ const Together = () => {
     const handleAddFriend = async (event) => {
         const id = event.target.id.toString();
         const data = await addFriend({ variables: { friendId: id } });
-    }
+    };
 
     const renderSearch = (data) => {
         if (!data) {
@@ -30,8 +30,8 @@ const Together = () => {
             console.log(data)
             return (
                 <div>
-                    <h3>{data.user.username}</h3>
-                    <button id={data.user._id} onClick={handleAddFriend}>Follow?</button>
+                    <h3 className='fw-bold my-2'>{data.user.username}</h3>
+                    <button id={data.user._id} onClick={handleAddFriend} className='btn btn-secondary'>Follow?</button>
                     <SearchList events={data.user.events}></SearchList>
                 </div>
             )
@@ -41,14 +41,16 @@ const Together = () => {
     return (
         <div>
             <Header />
-            <h1>Go Together!</h1>
-            <form onSubmit={handleFriendSearch}>
-                <label htmlFor='friend-search'></label>
-                <input id='friend-search' onChange={event => setSearchTerm(event.target.value)}></input>
-                <button type='submit'>Search</button>
-            </form>
-            {renderSearch(data)}
-            <FriendsList />
+            <div className='text-center'>
+                <h1>Go Together!</h1>
+                <form onSubmit={handleFriendSearch}>
+                    <label htmlFor='friend-search'></label>
+                    <input id='friend-search' onChange={event => setSearchTerm(event.target.value)} className='mx-3 my-3'></input>
+                    <button type='submit' className='btn btn-secondary'>Search</button>
+                </form>
+                {renderSearch(data)}
+                <FriendsList />
+            </div>
         </div>
     )
 }
