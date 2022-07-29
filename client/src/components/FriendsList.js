@@ -14,7 +14,7 @@ const FriendsList = () => {
            {friends && friends.map(friend => {
                 return (
                     <div key={friend._id}>
-                        <h3><Link>{friend.username}</Link></h3>
+                        <h3><Link to={"/"}>{friend.username}</Link></h3>
                     </div>
                 )
             })} 
