@@ -40,8 +40,9 @@ const Home = () => {
     return (
         <div>
             <Header />
-            <div className='d-flex justify-content-around'>
+            <div className='d-flex justify-content-around flex-wrap'>
             <Calendar
+                classname='calendar'
                 onChange={(value, event) => {
                     setSelectedDate(dayjs(value).format('MM-DD-YYYY'));
                 }}
