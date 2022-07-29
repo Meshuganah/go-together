@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import dayjs from "dayjs";
 import { ADD_EVENT } from "../utils/mutations";
 
 const SearchList = ({ events }) => {
@@ -16,7 +17,8 @@ const SearchList = ({ events }) => {
                     <div key={event.id} className='border border-secondary border-3 w-50 text-center mx-auto my-3'>
                         <h3>{event.title}</h3>
                         <span>{event.venue.name}</span>
-                        <span>{event.date}</span>
+                        <span className='mx-3'>{dayjs(event.datetime_local).format('MM/DD/YYYY')}</span>
+                        <span>{event.venue.city}, {event.venue.state}</span>
                         <button id={event.id} onClick={handleAddEvent} className='btn btn-secondary my-2 mx-2'>I'm Going!</button>
                     </div>
                 )

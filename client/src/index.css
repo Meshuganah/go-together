@@ -62,3 +62,25 @@ th, td {
   width: 100px;
   height: 50px;
 }
+
+@media screen and (max-width: 980px) {
+  .header-text {
+    font-size: 75px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-text {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .header-text {
+    font-size: 25px;
+  }
+
+  .calendar {
+    max-height: 50px;
+  }
+}
