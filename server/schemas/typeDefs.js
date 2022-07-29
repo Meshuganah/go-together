@@ -39,6 +39,7 @@ const typeDefs = gql`
 
     type Query {
         me: User
+        friends: Friends
         users: [User]
         user(username: String!): User
         event(_id: ID): Event
@@ -46,6 +47,10 @@ const typeDefs = gql`
         seatGeekEvent(id: String): Event
         seatGeekEvents(ids: [String]):  Events
         seatGeekQuery(query: String): Events
+    }
+
+    type Friends {
+        friends: [User]
     }
 
     type Events {

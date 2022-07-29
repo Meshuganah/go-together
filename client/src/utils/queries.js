@@ -28,6 +28,51 @@ export const QUERY_ME = gql`
       }
 `;
 
+export const QUERY_FRIENDS = gql`
+query Friends {
+  friends {
+    friends {
+      _id
+      username
+      email
+    }
+  }
+}
+`
+
+export const QUERY_USER = gql`
+query User($username: String!) {
+  user(username: $username) {
+    _id
+    username
+    email
+    friends {
+      _id
+      username
+      email
+    }
+    events {
+      id
+      title
+      venue {
+        name
+        state
+        city
+        address
+        postal_code
+      }
+      datetime_local
+      url
+      description
+      performers {
+        name
+        image
+      }
+    }
+  }
+}
+`
+
 export const QUERY_EVENTS = gql`
 query SeatGeekEvents($ids: [String]) {
   seatGeekEvents(ids: $ids) {
