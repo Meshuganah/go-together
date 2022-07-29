@@ -21,7 +21,8 @@ const EventList = ({ events, username, selectedDate }) => {
                     <div className='my-3 border-bottom'key={event.id}>
                         <h3>{event.title}</h3>
                         <span>{event.venue.name}</span>
-                        <span>{event.date}</span>
+                        <span className="mx-3">{dayjs(event.datetime_local).format('MM/DD/YYYY')}</span>
+                        <span>{event.venue.city}, {event.venue.state}</span>
                         <button id={event.id} onClick={handleRemoveEvent} className='btn btn-secondary float-end'>Can't Make It!</button>
                     </div>
                 )
