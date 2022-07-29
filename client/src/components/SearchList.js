@@ -15,7 +15,7 @@ const SearchList = ({ events }) => {
             {events && events.map(event => {
                 return (
                     <div key={event.id} className='border border-secondary border-3 w-50 text-center mx-auto my-3'>
-                        <h3>{event.title}</h3>
+                        <h3><a target="_blank" rel="noreferrer" href={event.url}>{event.title}</a></h3>
                         <span>{event.venue.name}</span>
                         <span className='mx-3'>{dayjs(event.datetime_local).format('MM/DD/YYYY')}</span>
                         <span>{event.venue.city}, {event.venue.state}</span>
