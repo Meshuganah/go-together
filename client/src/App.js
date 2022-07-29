@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Find from './pages/Find';
 import Together from './pages/Together';
+import UserPage from './pages/UserPage';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -62,6 +63,10 @@ function App() {
           <Route
             path="/signup"
             element={<Signup />}
+          />
+          <Route
+            path="/user/:username"
+            element={<UserPage />}
           />
           <Route
             path="*"

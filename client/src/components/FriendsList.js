@@ -11,10 +11,11 @@ const FriendsList = () => {
 
     return(
         <div>
+            <h3>Your Friends</h3>
            {friends && friends.map(friend => {
                 return (
                     <div key={friend._id}>
-                        <h3><Link to={"/"}>{friend.username}</Link></h3>
+                        <h3><Link to={`/user/${friend.username}`}>{friend.username}</Link></h3>
                     </div>
                 )
             })} 

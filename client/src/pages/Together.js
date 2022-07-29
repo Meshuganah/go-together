@@ -47,7 +47,8 @@ const Together = () => {
                 <input id='friend-search' onChange={event => setSearchTerm(event.target.value)}></input>
                 <button type='submit'>Search</button>
             </form>
-            {searching ? renderSearch(data) : <FriendsList />}
+            {renderSearch(data)}
+            <FriendsList />
         </div>
     )
 }

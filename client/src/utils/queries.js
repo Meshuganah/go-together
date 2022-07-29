@@ -46,11 +46,6 @@ query User($username: String!) {
     _id
     username
     email
-    friends {
-      _id
-      username
-      email
-    }
     events {
       id
       title
@@ -68,6 +63,11 @@ query User($username: String!) {
         name
         image
       }
+    }
+    friends {
+      _id
+      username
+      email
     }
   }
 }
