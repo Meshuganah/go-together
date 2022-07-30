@@ -6,10 +6,17 @@
 
   ## Table of Contents
   - [Contributing](#contributing)
-  - [Questions](#questions) 
+  - [Deployed](#deployed)
+  - [Questions](#questions)
 
   ## Contributing
   Contact us at dhunts258@gmail.com
+
+  ## Screenshot
+  ![App Homepage](./Capture.JPG)
+
+  ## Deployed
+  [Click Me!](https://we-go-together.herokuapp.com/#/)
 
   ## Questions?
   If you have any more questions for me, I can be reached from one of the links below. Thank you!
