@@ -19,7 +19,7 @@ const EventList = ({ events, username, selectedDate }) => {
                 }
                 return (
                     <div className='my-3 border-bottom'key={event.id}>
-                        <h3>{event.title}</h3>
+                        <h3><a target="_blank" rel="noreferrer" href={event.url}>{event.title}</a></h3>
                         <span>{event.venue.name}</span>
                         <span className="mx-3">{dayjs(event.datetime_local).format('MM/DD/YYYY')}</span>
                         <span>{event.venue.city}, {event.venue.state}</span>

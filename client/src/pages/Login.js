@@ -41,11 +41,17 @@ const Login = (props) => {
     };
 
     return (
-        <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-md-6">
-                <div className="card">
-                    <h4 className="card-header">Login</h4>
-                    <div className="card-body">
+        <main className="">
+            <div className="login-singup-container">
+                <img
+                    src={require('../assets/go-together-banner.jpg')}
+                    alt='Concert'
+                    className='login-singup-img'
+                >
+                </img>
+                <div className="login-signup">
+                    <h4 className="">Login</h4>
+                    <div className="">
                         <form onSubmit={handleFormSubmit}>
                             <input
                                 className="form-input"
@@ -57,7 +63,7 @@ const Login = (props) => {
                                 onChange={handleChange}
                             />
                             <input
-                                className="form-input"
+                                className="form-input mx-3"
                                 placeholder="******"
                                 name="password"
                                 type="password"
@@ -65,14 +71,14 @@ const Login = (props) => {
                                 value={formState.password}
                                 onChange={handleChange}
                             />
-                            <button className="btn d-block w-100" type="submit">
+                            <button className="btn btn-secondary" type="submit">
                                 Submit
                             </button>
                         </form>
 
                         {error && <div>Login failed</div>}
 
-                        <Link to='/signup'>Signup</Link>
+                        <Link to='/signup' className='fs-5 fw-bold border-bottom'>Signup</Link>
                     </div>
                 </div>
             </div>

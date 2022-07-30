@@ -16,8 +16,10 @@ const UserPage = () => {
     return(
         <div>
             <Header />
-            <h1>{data.user.username}</h1>
-            <h2>Events</h2>
+            <div className="text-center">
+                <h1>{data.user.username}</h1>
+                <h2>Events</h2>
+            </div>
             <SearchList events={data.user.events}></SearchList>
         </div>
     )
