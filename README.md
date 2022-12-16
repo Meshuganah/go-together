@@ -16,7 +16,7 @@
   ![App Homepage](./Capture.JPG)
 
   ## Deployed
-  [Click Me!](https://we-go-together.herokuapp.com/#/)
+  [Click Me!](https://go-together.fly.dev/#/)
 
   ## Questions?
   If you have any more questions for me, I can be reached from one of the links below. Thank you!
